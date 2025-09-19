@@ -15,8 +15,6 @@
 * *“Server-like” API* simulated with MSW/Mirage (latency + error injection)
 * *Persistence*: IndexedDB (Dexie/localForage). App restores from local DB on refresh
 
-> ℹ In demo builds where local persistence is disabled/cleared, changes appear *temporary* and reset on refresh. In normal mode, Dexie/localForage keep data across reloads unless you clear site data.
-
 ---
 
 ## 🧭 Table of Contents
