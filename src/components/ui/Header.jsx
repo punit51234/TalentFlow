@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 let taga = "Dashboard";
 let tagLinea = "Welcome back! Here's what's happening with your hiring pipeline.";
-let buttonNamea = "Cerate Job";
+let buttonNamea = "Create Job";
 
 
 function Header({tag = taga, tagLine = tagLinea, buttonName = buttonNamea, isButton=true, path}) {
