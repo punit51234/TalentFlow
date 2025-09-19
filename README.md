@@ -34,17 +34,6 @@
 
 ---
 
-## 🖼 Screenshots
-
-> Replace these with actual images from /docs/ or your repository:
-
-* docs/dashboard.png — Dashboard overview
-* docs/jobs-list.png — Jobs board with pagination & filters
-* docs/candidate-kanban.png — Candidate Kanban & virtualized list
-* docs/assessment-builder.png — Assessment builder + live preview
-
----
-
 ## 🧰 Tech Stack
 
 * *React* (with React Router)
