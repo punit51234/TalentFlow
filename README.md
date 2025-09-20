@@ -364,7 +364,3 @@ This project is for learning/demo purposes. Use freely with attribution.
 ## 🙌 Credits
 
 Built with ❤ using React, Vite, Tailwind, React Query, Mirage/MSW, Dexie/localForage, DnD-Kit, react-window, and lucide icons.
-
----
-
-Do you want me to also add **badges** (like GitHub stars, forks, license, live link deploy badge) at the top of the README for a more professional look?
