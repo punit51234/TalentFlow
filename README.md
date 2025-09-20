@@ -1,16 +1,24 @@
-# TalentFlow — Mini Hiring Platform (HR-first)
+
+# TalentFlow — Mini Hiring Platform
 
 > A polished, front-end–only hiring tool where HRs can manage jobs, candidates, assessments, and notifications — with realistic server behavior simulated via MSW/Mirage, local pagination/virtualization, and robust local persistence (IndexedDB).
 
 ---
 
+## 🔗 Links
+
+* **GitHub Repository**: [TalentFlow Repo](https://github.com/punit51234/TalentFlow)
+* **Live Demo**: [TalentFlow on Vercel](https://project-chi-pearl-49.vercel.app/)
+
+---
+
 ## ✨ Highlights
 
-* *HR-focused UX* with a clean sidebar (Company Logo, *Dashboard, **Jobs, **Candidates, **Assessments, **Notifications*)
+* *HR-focused UX* with a clean sidebar (Company Logo, \*Dashboard, \*\*Jobs, \*\*Candidates, \*\*Assessments, \**Notifications*)
 * *Dashboard*: active jobs, total candidates, assessments, hiring rate, recent activity, and urgent tasks
-* *Jobs: create/edit/archive, **drag-and-drop reorder* (optimistic UI + rollback), deep links
-* *Candidates: 1000+ seeded profiles, client search + stage filter, **virtualized lists, profile timeline, **Kanban* stage moves, notes with @mentions
-* *Assessments: builder per job (sections + question types), **live preview*, local persistence, runtime validation & conditionals
+* \*Jobs: create/edit/archive, \**drag-and-drop reorder* (optimistic UI + rollback), deep links
+* \*Candidates: 1000+ seeded profiles, client search + stage filter, \*\*virtualized lists, profile timeline, \**Kanban* stage moves, notes with @mentions
+* \*Assessments: builder per job (sections + question types), \**live preview*, local persistence, runtime validation & conditionals
 * *Notifications*: centralized feed for system actions
 * *“Server-like” API* simulated with MSW/Mirage (latency + error injection)
 * *Persistence*: IndexedDB (Dexie/localForage). App restores from local DB on refresh
@@ -56,8 +64,8 @@
 * *Archive/Unarchive*
 * *Reorder* via drag-and-drop
 
-  * *Optimistic update* with rollback when /jobs/:id/reorder returns an injected error
-* *Deep link*: /jobs/:jobId to jump straight to a job
+  * *Optimistic update* with rollback when /jobs/\:id/reorder returns an injected error
+* *Deep link*: /jobs/\:jobId to jump straight to a job
 
 ### 2) Candidates
 
@@ -67,7 +75,7 @@
 * *Kanban board* to move candidates between stages:
 
   * applied → screen → tech → offer → hired (+ rejected)
-* *Candidate profile*: /candidates/:id shows details & *timeline* of status changes
+* *Candidate profile*: /candidates/\:id shows details & *timeline* of status changes
 * *Notes with @mentions* (UI only; suggestions from a local user list)
 
 ### 3) Assessments
@@ -76,7 +84,7 @@
 
   * Sections + questions:
 
-    * *Single choice, **Multi choice, **Short text, **Long text, **Numeric (range), **File upload (stub)*
+    * \*Single choice, \*\*Multi choice, \*\*Short text, \*\*Long text, \*\*Numeric (range), \**File upload (stub)*
   * *Live preview* renders a fillable form
   * *Validation rules*: required, numeric range, max length
   * *Conditional logic*: e.g., show Q3 only if Q1 === “Yes”
@@ -97,13 +105,12 @@
 /hr/dashboard            → HR Dashboard (KPIs, recent activity, urgent tasks)
 /hr/jobs                 → Jobs board (list, filters, pagination)
 /hr/jobs/new             → Create Job (guided form → then edits on new route)
-/jobs/:jobId             → Job Detail/Edit (reorder, archive, deep link)
+/jobs/\:jobId             → Job Detail/Edit (reorder, archive, deep link)
 /hr/candidates           → Candidates list (virtualized + filters)
-/candidates/:id          → Candidate Profile (timeline, notes)
+/candidates/\:id          → Candidate Profile (timeline, notes)
 /hr/assessments          → Assessments overview
-/assessments/:jobId      → Assessment Builder + Live Preview
+/assessments/\:jobId      → Assessment Builder + Live Preview
 /hr/notifications        → Notifications center
-
 
 ---
 
@@ -113,26 +120,25 @@
 
 *Resources & Shapes*
 
-
-| Method | Path                         | Query / Body                           | Returns                                  | Notes                                           |
-| ------ | ---------------------------- | -------------------------------------- | ---------------------------------------- | ----------------------------------------------- |
-| GET    | /jobs                      | search, status, page, pageSize, sort | { data: Job[], meta: { total } }       | server-like pagination + filters                |
-| POST   | /jobs                      | { title, slug?, tags?, status? }     | Job                                    | title required; slug auto-unique if omitted |
-| PATCH  | /jobs/:id                  | Partial Job                          | Job                                    | edit title/tags/status                          |
-| PATCH  | /jobs/:id/reorder          | { fromOrder, toOrder }               | { ok: true }                           | randomly 500 to test rollback                   |
-| GET    | /candidates                | search, stage, page, pageSize        | { data: Candidate[], meta: { total } } | virtualized list fed by paged API               |
-| POST   | /candidates                | { name, email, stage?, jobId? }      | Candidate                              | stage defaults to applied                     |
-| PATCH  | /candidates/:id            | { stage?, notes? }                   | Candidate                              | stage transitions for Kanban                    |
-| GET    | /candidates/:id/timeline   | —                                      | TimelineEvent[]                        | status history                                  |
-| GET    | /assessments/:jobId        | —                                      | AssessmentDoc                          | builder document per job                        |
-| PUT    | /assessments/:jobId        | AssessmentDoc                        | AssessmentDoc                          | upsert sections & questions                     |
-| POST   | /assessments/:jobId/submit | AssessmentResponse                   | { id, savedAt }                        | stored locally (per candidate)                  |
+| Method | Path                        | Query / Body                         | Returns                                 | Notes                                       |
+| ------ | --------------------------- | ------------------------------------ | --------------------------------------- | ------------------------------------------- |
+| GET    | /jobs                       | search, status, page, pageSize, sort | { data: Job\[], meta: { total } }       | server-like pagination + filters            |
+| POST   | /jobs                       | { title, slug?, tags?, status? }     | Job                                     | title required; slug auto-unique if omitted |
+| PATCH  | /jobs/\:id                  | Partial Job                          | Job                                     | edit title/tags/status                      |
+| PATCH  | /jobs/\:id/reorder          | { fromOrder, toOrder }               | { ok: true }                            | randomly 500 to test rollback               |
+| GET    | /candidates                 | search, stage, page, pageSize        | { data: Candidate\[], meta: { total } } | virtualized list fed by paged API           |
+| POST   | /candidates                 | { name, email, stage?, jobId? }      | Candidate                               | stage defaults to applied                   |
+| PATCH  | /candidates/\:id            | { stage?, notes? }                   | Candidate                               | stage transitions for Kanban                |
+| GET    | /candidates/\:id/timeline   | —                                    | TimelineEvent\[]                        | status history                              |
+| GET    | /assessments/\:jobId        | —                                    | AssessmentDoc                           | builder document per job                    |
+| PUT    | /assessments/\:jobId        | AssessmentDoc                        | AssessmentDoc                           | upsert sections & questions                 |
+| POST   | /assessments/\:jobId/submit | AssessmentResponse                   | { id, savedAt }                         | stored locally (per candidate)              |
 
 *Seeding*
 
 * *25 jobs* (active + archived)
 * *1,000 candidates* (random jobs & stages)
-* *≥ 3 assessments, each with **10+ questions*
+* \*≥ 3 assessments, each with \**10+ questions*
 * *Latency*: 200–1200 ms
 * *Write error rate*: 5–10% to validate optimistic UI + rollback
 
@@ -156,54 +162,101 @@
 
 src/
 
+api/
+
+```
+src/
   api/
-  
     server/               # Mirage/MSW handlers, seeds, latency/error toggles
     services/
-      jobs.ts             # fetch wrappers (React Query)
-      candidates.ts
-      assessments.ts
+      jobs.js             # fetch wrappers (React Query)
+      candidates.js
+      assessments.js
+
+```
+
+components/
+
+```
+common/               # Sidebar, Header, Cards, Charts, Loaders, Toasts
+ui/                   # small reusable primitives
+```
+
+features/
+
+```
+src/
+  api/
+    server/               # Mirage/MSW handlers, seeds, latency/error toggles
+    services/
+      jobs.js             # fetch wrappers (React Query)
+      candidates.js
+      assessments.js
   components/
-  
     common/               # Sidebar, Header, Cards, Charts, Loaders, Toasts
     ui/                   # small reusable primitives
   features/
-  
     dashboard/
-      DashboardPage.tsx
+      DashboardPage.jsx
     jobs/
-      JobsPage.tsx
-      JobDetailPage.tsx
-      JobForm.tsx
-      JobRow.tsx
+      JobsPage.jsx
+      JobDetailPage.jsx
+      JobForm.jsx
+      JobRow.jsx
       reorder/            # DnD order list, sensors, optimistic handlers
     candidates/
-      CandidatesPage.tsx
-      CandidateProfilePage.tsx
-      CandidateKanban.tsx
-      VirtualizedList.tsx
+      CandidatesPage.jsx
+      CandidateProfilePage.jsx
+      CandidateKanban.jsx
+      VirtualizedList.jsx
     assessments/
-      AssessmentsPage.tsx
-      Builder.tsx         # sections, questions, validators, conditionals
-      Preview.tsx         # live form preview
-      RuntimeForm.tsx     # fillable form + rules
+      AssessmentsPage.jsx
+      Builder.jsx         # sections, questions, validators, conditionals
+      Preview.jsx         # live form preview
+      RuntimeForm.jsx     # fillable form + rules
     notifications/
-      NotificationsPage.tsx
+      NotificationsPage.jsx
   lib/
-  
     db/                   # Dexie/localForage schema & adapters
     dnd/                  # DnD-Kit helpers
     validation/           # zod/yup (if used)
     utils/                # slugify, formatters, guards
   router/
-  
-    index.tsx             # React Router config
+    index.jsx             # React Router config
   styles/
-  
     index.css             # Tailwind entry
   assets/
     logo.svg
-    
+
+main.jsx
+App.jsx
+
+```
+
+lib/
+
+```
+db/                   # Dexie/localForage schema & adapters
+dnd/                  # DnD-Kit helpers
+validation/           # zod/yup (if used)
+utils/                # slugify, formatters, guards
+```
+
+router/
+
+```
+index.tsx             # React Router config
+```
+
+styles/
+
+```
+index.css             # Tailwind entry
+```
+
+assets/
+logo.svg
+
 main.tsx
 
 App.tsx
@@ -219,31 +272,33 @@ App.tsx
 ### Install & Run
 
 # install
+
 pnpm install        # or npm i / yarn
 
 # dev (starts Mirage/MSW + Vite)
+
 pnpm dev
 
 # build
+
 pnpm build
 
 # preview build
-pnpm preview
 
+pnpm preview
 
 ### Scripts (example)
 
 json
 {
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview --port 5173",
-    "typecheck": "tsc --noEmit",
-    "lint": "eslint ."
-  }
+"scripts": {
+"dev": "vite",
+"build": "vite build",
+"preview": "vite preview --port 5173",
+"typecheck": "tsc --noEmit",
+"lint": "eslint ."
 }
-
+}
 
 ---
 
@@ -251,7 +306,7 @@ json
 
 * *Mirage/MSW*:
 
-  * Toggle latency and error rates in src/api/server.*
+  * Toggle latency and error rates in src/api/server.\*
   * Seed sizes (jobs/candidates/questions) configurable in seed file
 * *Dexie/localForage*:
 
@@ -259,7 +314,7 @@ json
   * Tables: jobs, candidates, timelines, assessments, submissions, notifications
 * *React Query*:
 
-  * Query keys by resource (e.g., ['jobs', params])
+  * Query keys by resource (e.g., \['jobs', params])
   * Mutation handlers perform write-through to IndexedDB
 
 ---
@@ -284,7 +339,7 @@ json
 * *Drag-and-drop not reordering*
   Confirm DnD-Kit sensors and sortable context wrap the list rows correctly; check that order is persisted and query invalidations run.
 * *Optimistic UI not rolling back*
-  Ensure /jobs/:id/reorder occasionally returns 500 (controlled in Mirage) and mutations have onError handlers to revert.
+  Ensure /jobs/\:id/reorder occasionally returns 500 (controlled in Mirage) and mutations have onError handlers to revert.
 
 ---
 
@@ -306,6 +361,10 @@ This project is for learning/demo purposes. Use freely with attribution.
 
 ---
 
-### 🙌 Credits
+## 🙌 Credits
 
 Built with ❤ using React, Vite, Tailwind, React Query, Mirage/MSW, Dexie/localForage, DnD-Kit, react-window, and lucide icons.
+
+---
+
+Do you want me to also add **badges** (like GitHub stars, forks, license, live link deploy badge) at the top of the README for a more professional look?
